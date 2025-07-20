@@ -1,0 +1,112 @@
+import {
+    TableContainer, Paper, Table, TableHead, TableRow, TableBody, Box, Button, TableCell, Alert, Snackbar,
+} from '@mui/material';
+
+import Filters from "../filters/Filters.jsx";
+import ConfirmationDialog from "../confirmationDialog/ConfirmationDialog.jsx";
+import SchoolRow from "../schoolRow/SchoolRow.jsx";
+import SchoolForm from "../schoolForm/SchoolForm.jsx";
+import {useSchoolTable} from './useSchoolTable.js';
+import {styles} from './styles.js';
+import {useState} from "react";
+
+const SchoolTable = () => {
+    const {
+        schools,
+        filters,
+        formOpen,
+        dialogOpen,
+        handleFilterChange,
+        setFormOpen,
+        handleDeactivate,
+        confirmDeactivate,
+        setDialogOpen,
+        loadSchools,
+    } = useSchoolTable();
+
+    const [snackbar, setSnackbar] = useState({
+        open: false,
+        message: '',
+        severity: 'success',
+    });
+
+    const showSnackbar = (message, severity = 'success') => {
+        setSnackbar({open: true, message, severity});
+    };
+
+    const handleCloseSnackbar = () => {
+        setSnackbar((prev) => ({
+            ...prev,
+            open: false,
+        }));
+    };
+
+    return (
+
+        <Box sx={styles.container}>
+            <Box sx={styles.headerRow}>
+                <Filters
+                    filters={filters}
+                    onChange={handleFilterChange}/>
+                <Button variant="contained" onClick={() => setFormOpen(true)}>
+                    Створити
+                </Button>
+            </Box>
+            <SchoolForm
+                open={formOpen}
+                onClose={() => setFormOpen(false)}
+                onSuccess={async () => {
+                    await loadSchools();
+                    showSnackbar('Школу успішно створено!');
+                }}
+            />
+
+            <TableContainer component={Paper}>
+                <Table>
+                    <TableHead>
+                        <TableRow sx={styles.tableHeadRow}>
+                            <TableCell>Назва</TableCell>
+                            <TableCell>ЄДРПОУ</TableCell>
+                            <TableCell>Область</TableCell>
+                            <TableCell>Тип</TableCell>
+                            <TableCell>Активна</TableCell>
+                            <TableCell>Дія</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {schools.map((s) => (
+                            <SchoolRow key={s.id} school={s} onDeactivate={handleDeactivate}/>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+
+            <ConfirmationDialog
+                open={dialogOpen}
+                onClose={() => setDialogOpen(false)}
+                onConfirm={async () => {
+                    await confirmDeactivate();
+                    showSnackbar('Школу деактивовано', 'info');
+                }}
+            />
+
+            <Snackbar
+                open={snackbar.open}
+                autoHideDuration={3000}
+                onClose={handleCloseSnackbar}
+                anchorOrigin={{vertical: 'top', horizontal: 'right'}}
+            >
+                <Alert
+                    onClose={handleCloseSnackbar}
+                    severity={snackbar.severity}
+                    sx={{width: '100%'}}
+                    variant="filled"
+                >
+                    {snackbar.message}
+                </Alert>
+            </Snackbar>
+        </Box>
+    );
+};
+
+export default SchoolTable;
