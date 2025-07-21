@@ -85,8 +85,19 @@ const SchoolTable = () => {
                 open={dialogOpen}
                 onClose={() => setDialogOpen(false)}
                 onConfirm={async () => {
-                    await confirmDeactivate();
-                    showSnackbar('Школу деактивовано', 'info');
+                    try {
+                        await confirmDeactivate();
+                        showSnackbar('Школу деактивовано', 'info');
+                    } catch (error) {
+                        let message = 'Не вдалося деактивувати школу';
+
+                        const data = await error.response?.json?.().catch(() => null);
+                        if (data?.detail) message = data.detail;
+
+                        showSnackbar(message, 'error');
+                    } finally {
+                        setDialogOpen(false);
+                    }
                 }}
             />
 

@@ -12,14 +12,24 @@ export async function fetchSchools(params = {}) {
 export async function createSchool(data) {
     const res = await fetch(`${API_BASE}/schools`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data),
     });
     return res.json();
 }
 
 export async function deactivateSchool(id) {
-    await fetch(`${API_BASE}/schools/${id}/deactivate`, {
+    const res = await fetch(`${API_BASE}/schools/${id}/deactivate`, {
         method: 'PATCH',
     });
+    if (!res.ok) {
+        const errorData = await res.json();
+
+        const err = new Error(errorData.detail || 'Server error');
+        err.response = {
+            status: res.status,
+            json: async () => errorData,
+        };
+        throw err;
+    }
 }

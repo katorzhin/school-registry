@@ -18,6 +18,7 @@ public enum SchoolType {
     public String getDescription() {
         return description;
     }
+
     @JsonCreator
     public static SchoolType fromValue(String value) {
         for (SchoolType type : values()) {
