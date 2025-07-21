@@ -6,7 +6,7 @@
 - Spring Boot 3.5.3
 - PostgreSQL 15 (via Docker)
 - Liquibase
-- Maven
+- Gradle
 - Lombok 1.18.30
 
 ### Frontend
