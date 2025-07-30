@@ -21,6 +21,12 @@
 
 ## 🚀 Project Setup
 
+### Docker
+
+cd docker
+
+docker compose up -d
+
 ### 🔙 Backend
 
 cd school-registry-backend
@@ -38,12 +44,6 @@ npm install
 npm run dev
 
 The interface will be available at: http://localhost:5173.
-
-### Docker
-
-cd docker
-
-docker compose up -d
 
 ### 📌 API Endpoints
 
