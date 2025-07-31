@@ -11,6 +11,7 @@ public interface SchoolDtoMapper {
 
     SchoolDtoResponse toResponse(School school);
 
+    @Mapping(target = "id", ignore = true)
     @Mapping(target = "active", constant = "true")
     School toEntity(SchoolDtoRequest request);
 }
