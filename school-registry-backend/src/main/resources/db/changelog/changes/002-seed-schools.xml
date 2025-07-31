@@ -1,0 +1,72 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="002-seed-schools" author="O.Katorzhyn">
+        <insert tableName="school">
+            <column name="id" valueComputed="gen_random_uuid()"/>
+            <column name="name" value="Школа №1"/>
+            <column name="edrpou" value="12345678"/>
+            <column name="region" value="Київ"/>
+            <column name="type" value="LYCEUM"/>
+            <column name="is_active" valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="school">
+            <column name="id" valueComputed="gen_random_uuid()"/>
+            <column name="name" value="Школа №2"/>
+            <column name="edrpou" value="87654321"/>
+            <column name="region" value="Харків"/>
+            <column name="type" value="GYMNASIUM"/>
+            <column name="is_active" valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="school">
+            <column name="id" valueComputed="gen_random_uuid()"/>
+            <column name="name" value="Школа №3"/>
+            <column name="edrpou" value="11223344"/>
+            <column name="region" value="Львів"/>
+            <column name="type" value="ZZSO"/>
+            <column name="is_active" valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="school">
+            <column name="id" valueComputed="gen_random_uuid()"/>
+            <column name="name" value="Школа №4"/>
+            <column name="edrpou" value="99887766"/>
+            <column name="region" value="Одеса"/>
+            <column name="type" value="LYCEUM"/>
+            <column name="is_active" valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="school">
+            <column name="id" valueComputed="gen_random_uuid()"/>
+            <column name="name" value="Школа №5"/>
+            <column name="edrpou" value="44332211"/>
+            <column name="region" value="Дніпро"/>
+            <column name="type" value="GYMNASIUM"/>
+            <column name="is_active" valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="school">
+            <column name="id" valueComputed="gen_random_uuid()"/>
+            <column name="name" value="Школа №6"/>
+            <column name="edrpou" value="55667788"/>
+            <column name="region" value="Черкаси"/>
+            <column name="type" value="ZZSO"/>
+            <column name="is_active" valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="school">
+            <column name="id" valueComputed="gen_random_uuid()"/>
+            <column name="name" value="Школа №7"/>
+            <column name="edrpou" value="55623788"/>
+            <column name="region" value="Полтава"/>
+            <column name="type" value="ZZSO"/>
+            <column name="is_active" valueBoolean="true"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

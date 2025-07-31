@@ -6,4 +6,5 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <include file="changes/001-create-school-table.xml" relativeToChangelogFile="true"/>
+    <include file="changes/002-seed-schools.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
