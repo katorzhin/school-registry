@@ -26,7 +26,7 @@
 
 docker compose up --build
 
-###After startup:
+### After startup:
 
 💻 Frontend available at: http://localhost:3000
 
