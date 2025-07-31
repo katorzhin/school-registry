@@ -22,29 +22,15 @@
 
 ## 🚀 Project Setup
 
-### Docker
+### 🐳 Run Entire Project via Docker
 
-cd docker
+docker compose up --build
 
-docker compose up -d
+###After startup:
 
-### 🔙 Backend
+💻 Frontend available at: http://localhost:3000
 
-cd school-registry-backend
-
-./gradlew bootRun
-
-The API will be available at: http://localhost:8081/schools .
-
-### 💻 Frontend
-
-cd school-registry-frontend
-
-npm install
-
-npm run dev
-
-The interface will be available at: http://localhost:5173.
+🔙 Backend API at: http://localhost:8081/schools
 
 ### 📌 API Endpoints
 
