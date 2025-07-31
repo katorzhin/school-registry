@@ -28,6 +28,30 @@ services:
     networks:
       - school-net
 
+  backend:
+    build:
+      context: ./school-registry-backend
+      dockerfile: Dockerfile
+    container_name: school-backend
+    ports:
+      - "8081:8081"
+    depends_on:
+      - postgres
+    networks:
+      - school-net
+
+  frontend:
+   build:
+    context: ./school-registry-frontend
+    dockerfile: Dockerfile
+   container_name: school-frontend
+   ports:
+    - "3000:80"
+   depends_on:
+    - backend
+   networks:
+    - school-net
+
 volumes:
   postgres-data:
 
