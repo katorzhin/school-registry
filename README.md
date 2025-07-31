@@ -34,7 +34,7 @@ cd school-registry-backend
 
 ./gradlew bootRun
 
-The API will be available at: http://localhost:8081.
+The API will be available at: http://localhost:8081/schools .
 
 ### 💻 Frontend
 
