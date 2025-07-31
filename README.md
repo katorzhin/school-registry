@@ -10,6 +10,7 @@
 - Lombok 1.18.30
 
 ### Frontend
+- Node 22.11.0
 - React 19.1.0
 - React DOM 19.1.0
 - MUI 7.2.0
@@ -33,7 +34,7 @@ cd school-registry-backend
 
 ./gradlew bootRun
 
-The API will be available at: http://localhost:8081.
+The API will be available at: http://localhost:8081/schools .
 
 ### 💻 Frontend
 
