@@ -1,7 +1,7 @@
 package com.katorzhin.schoolregistry.controller;
 
-import com.katorzhin.schoolregistry.dto.schoolDto.CreateSchoolRequest;
-import com.katorzhin.schoolregistry.dto.schoolDto.SchoolResponse;
+import com.katorzhin.schoolregistry.dto.schoolDto.SchoolDtoRequest;
+import com.katorzhin.schoolregistry.dto.schoolDto.SchoolDtoResponse;
 import com.katorzhin.schoolregistry.model.SchoolType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +18,7 @@ public class SchoolController {
     private final SchoolService schoolService;
 
     @PostMapping
-    public SchoolResponse create(@RequestBody CreateSchoolRequest school) {
+    public SchoolDtoResponse create(@RequestBody SchoolDtoRequest school) {
         return schoolService.create(school);
     }
 
@@ -28,7 +28,7 @@ public class SchoolController {
     }
 
     @GetMapping()
-    public List<SchoolResponse> getFilteredSchools(
+    public List<SchoolDtoResponse> getFilteredSchools(
             @RequestParam(required = false) String region,
             @RequestParam(required = false) SchoolType type,
             @RequestParam(required = false) Boolean active

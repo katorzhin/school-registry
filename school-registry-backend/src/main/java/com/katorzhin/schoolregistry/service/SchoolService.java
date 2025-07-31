@@ -1,7 +1,7 @@
 package com.katorzhin.schoolregistry.service;
 
-import com.katorzhin.schoolregistry.dto.schoolDto.CreateSchoolRequest;
-import com.katorzhin.schoolregistry.dto.schoolDto.SchoolResponse;
+import com.katorzhin.schoolregistry.dto.schoolDto.SchoolDtoRequest;
+import com.katorzhin.schoolregistry.dto.schoolDto.SchoolDtoResponse;
 import com.katorzhin.schoolregistry.exception.SchoolNotFoundException;
 import com.katorzhin.schoolregistry.mapper.SchoolDtoMapper;
 import com.katorzhin.schoolregistry.model.SchoolType;
@@ -22,13 +22,8 @@ public class SchoolService {
     private final SchoolRepository schoolRepository;
     private final SchoolDtoMapper schoolDtoMapper;
 
-    public SchoolResponse create(CreateSchoolRequest request) {
-        School school = new School();
-        school.setName(request.getName());
-        school.setEdrpou(request.getEdrpou());
-        school.setRegion(request.getRegion());
-        school.setType(request.getType());
-        school.setActive(true);
+    public SchoolDtoResponse create(SchoolDtoRequest request) {
+        School school = schoolDtoMapper.toEntity(request);
         return schoolDtoMapper.toResponse(schoolRepository.save(school));
     }
 
@@ -39,7 +34,7 @@ public class SchoolService {
         schoolRepository.save(school);
     }
 
-    public List<SchoolResponse> findAllFiltered(String region, SchoolType type, Boolean active) {
+    public List<SchoolDtoResponse> findAllFiltered(String region, SchoolType type, Boolean active) {
         Specification<School> spec =
                 SchoolSpecification.hasRegion(region)
                         .and(SchoolSpecification.hasType(type))
