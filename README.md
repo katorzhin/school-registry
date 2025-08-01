@@ -32,13 +32,11 @@ docker compose up --build
 
 🔙 Backend API at: http://localhost:8081/schools
 
-### 📌 API Endpoints
+### 📘 API Documentation (Swagger UI)
 
-GET /schools — get a list of schools with optional filters: region, type, is_active
+- 🔍 **Swagger UI:** [Swagger UI](http://localhost:8081/swagger-ui/index.html)
+- 📄 **OpenAPI JSON:** [OpenAPI JSON](http://localhost:8081/v3/api-docs)
 
-POST /schools — create a new school
-
-PATCH /schools/{id}/deactivate — deactivate a school
 
 ### 🗂 ERD Diagram
 

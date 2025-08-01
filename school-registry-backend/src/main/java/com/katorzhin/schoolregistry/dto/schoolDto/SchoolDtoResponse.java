@@ -4,7 +4,6 @@ import com.katorzhin.schoolregistry.model.SchoolType;
 
 import java.util.UUID;
 
-
 public record SchoolDtoResponse(
         UUID id,
         String name,
