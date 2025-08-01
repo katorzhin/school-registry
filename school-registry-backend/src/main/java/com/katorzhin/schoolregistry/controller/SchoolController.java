@@ -3,6 +3,7 @@ package com.katorzhin.schoolregistry.controller;
 import com.katorzhin.schoolregistry.dto.schoolDto.SchoolDtoRequest;
 import com.katorzhin.schoolregistry.dto.schoolDto.SchoolDtoResponse;
 import com.katorzhin.schoolregistry.model.SchoolType;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import com.katorzhin.schoolregistry.service.SchoolService;
@@ -18,7 +19,7 @@ public class SchoolController {
     private final SchoolService schoolService;
 
     @PostMapping
-    public SchoolDtoResponse create(@RequestBody SchoolDtoRequest school) {
+    public SchoolDtoResponse create(@Valid @RequestBody SchoolDtoRequest school) {
         return schoolService.create(school);
     }
 
