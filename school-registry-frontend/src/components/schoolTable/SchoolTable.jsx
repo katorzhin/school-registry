@@ -9,6 +9,7 @@ import SchoolForm from "../schoolForm/SchoolForm.jsx";
 import {useSchoolTable} from './useSchoolTable.js';
 import {styles} from './styles.js';
 import {useState} from "react";
+import { Pagination } from '@mui/material';
 
 const SchoolTable = () => {
     const {
@@ -22,6 +23,8 @@ const SchoolTable = () => {
         confirmDeactivate,
         setDialogOpen,
         loadSchools,
+        pagination,
+        setPagination,
     } = useSchoolTable();
 
     const [snackbar, setSnackbar] = useState({
@@ -80,6 +83,28 @@ const SchoolTable = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
+
+            <Box display="flex" justifyContent="center" my={2}>
+                <Pagination
+                    count={pagination.totalPages}
+                    page={pagination.page + 1}
+                    onChange={(_, value) => {
+                        setPagination((prev) => ({ ...prev, page: value - 1 }));
+                    }}
+                    color="primary"
+                />
+            </Box>
+
+            <Box textAlign="center" mb={2}>
+                {pagination.totalElements === 0 ? (
+                    '0 записів'
+                ) : (
+                    `${pagination.page * pagination.size + 1} – ${Math.min((pagination.page + 1) * pagination.size, pagination.totalElements)} з ${pagination.totalElements}`
+                )}
+            </Box>
+
+
+
 
             <ConfirmationDialog
                 open={dialogOpen}

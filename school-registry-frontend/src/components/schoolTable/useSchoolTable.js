@@ -9,10 +9,26 @@ export const useSchoolTable = () => {
     const [selectedId, setSelectedId] = useState(null);
     const [formOpen, setFormOpen] = useState(false);
 
+    const [pagination, setPagination] = useState({
+        page: 0,
+        size: 10,
+        totalPages: 1,
+        totalElements: 0,
+    });
+
     const loadSchools = useCallback(async () => {
-        const data = await fetchSchools(filters);
-        setSchools(data);
-    }, [filters]);
+        const data = await fetchSchools({
+            ...filters,
+            page: pagination.page,
+            size: pagination.size,
+        });
+        setSchools(data.content);
+        setPagination((prev) => ({
+            ...prev,
+            totalPages: data.totalPages,
+            totalElements: data.totalElements
+        }));
+    }, [filters, pagination.page, pagination.size]);
 
     useEffect(() => {
         (async () => {
@@ -43,6 +59,8 @@ export const useSchoolTable = () => {
         dialogOpen,
         setFormOpen,
         setDialogOpen,
+        pagination,
+        setPagination,
         loadSchools,
         handleFilterChange,
         handleDeactivate,

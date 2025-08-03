@@ -5,10 +5,12 @@ import com.katorzhin.schoolregistry.dto.schoolDto.SchoolDtoResponse;
 import com.katorzhin.schoolregistry.model.SchoolType;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 import com.katorzhin.schoolregistry.service.SchoolService;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -29,11 +31,12 @@ public class SchoolController {
     }
 
     @GetMapping()
-    public List<SchoolDtoResponse> getFilteredSchools(
+    public Page<SchoolDtoResponse> getFilteredSchools(
             @RequestParam(required = false) String region,
             @RequestParam(required = false) SchoolType type,
-            @RequestParam(required = false) Boolean active
+            @RequestParam(required = false) Boolean active,
+            @PageableDefault(size = 20, sort = "name") Pageable pageable
     ) {
-        return schoolService.findAllFiltered(region, type, active);
+        return schoolService.findAllFiltered(region, type, active,pageable);
     }
 }
