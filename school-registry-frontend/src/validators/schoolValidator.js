@@ -3,6 +3,7 @@ import { z } from 'zod';
 export const schoolSchema = z.object({
     name: z
         .string()
+        .trim()
         .min(1, 'Назва обовʼязкова')
         .min(7, 'Мінімум 7 символи'),
 
