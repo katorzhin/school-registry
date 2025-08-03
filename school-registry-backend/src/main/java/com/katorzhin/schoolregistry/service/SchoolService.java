@@ -7,12 +7,13 @@ import com.katorzhin.schoolregistry.mapper.SchoolDtoMapper;
 import com.katorzhin.schoolregistry.model.SchoolType;
 import com.katorzhin.schoolregistry.spec.SchoolSpecification;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import com.katorzhin.schoolregistry.model.School;
 import com.katorzhin.schoolregistry.repository.SchoolRepository;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -34,14 +35,13 @@ public class SchoolService {
         schoolRepository.save(school);
     }
 
-    public List<SchoolDtoResponse> findAllFiltered(String region, SchoolType type, Boolean active) {
+    public Page<SchoolDtoResponse> findAllFiltered(String region, SchoolType type, Boolean active, Pageable pageable) {
         Specification<School> spec =
                 SchoolSpecification.hasRegion(region)
                         .and(SchoolSpecification.hasType(type))
                         .and(SchoolSpecification.isActive(active));
 
-        return schoolRepository.findAll(spec).stream()
-                .map(schoolDtoMapper::toResponse)
-                .toList();
+        return schoolRepository.findAll(spec, pageable)
+                .map(schoolDtoMapper::toResponse);
     }
 }
