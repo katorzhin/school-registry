@@ -9,7 +9,8 @@ import SchoolForm from "../schoolForm/SchoolForm.jsx";
 import {useSchoolTable} from './useSchoolTable.js';
 import {styles} from './styles.js';
 import {useState} from "react";
-import { Pagination } from '@mui/material';
+import {Pagination} from '@mui/material';
+import TableSortableCell from "../tableSorting/TableSortableCell.jsx";
 
 const SchoolTable = () => {
     const {
@@ -25,6 +26,9 @@ const SchoolTable = () => {
         loadSchools,
         pagination,
         setPagination,
+        sortField,
+        sortDirection,
+        handleSort,
     } = useSchoolTable();
 
     const [snackbar, setSnackbar] = useState({
@@ -68,10 +72,22 @@ const SchoolTable = () => {
                 <Table>
                     <TableHead>
                         <TableRow sx={styles.tableHeadRow}>
-                            <TableCell>Назва</TableCell>
+                            <TableSortableCell field="name"
+                                               label="Назва"
+                                               sortField={sortField}
+                                               sortDirection={sortDirection}
+                                               onSort={handleSort}/>
                             <TableCell>ЄДРПОУ</TableCell>
-                            <TableCell>Область</TableCell>
-                            <TableCell>Тип</TableCell>
+                            <TableSortableCell field="region"
+                                               label="Область"
+                                               sortField={sortField}
+                                               sortDirection={sortDirection}
+                                               onSort={handleSort}/>
+                            <TableSortableCell field="type"
+                                               label="Тип"
+                                               sortField={sortField}
+                                               sortDirection={sortDirection}
+                                               onSort={handleSort}/>
                             <TableCell>Активна</TableCell>
                             <TableCell>Дія</TableCell>
                         </TableRow>
@@ -89,7 +105,7 @@ const SchoolTable = () => {
                     count={pagination.totalPages}
                     page={pagination.page + 1}
                     onChange={(_, value) => {
-                        setPagination((prev) => ({ ...prev, page: value - 1 }));
+                        setPagination((prev) => ({...prev, page: value - 1}));
                     }}
                     color="primary"
                 />
@@ -102,9 +118,6 @@ const SchoolTable = () => {
                     `${pagination.page * pagination.size + 1} – ${Math.min((pagination.page + 1) * pagination.size, pagination.totalElements)} з ${pagination.totalElements}`
                 )}
             </Box>
-
-
-
 
             <ConfirmationDialog
                 open={dialogOpen}

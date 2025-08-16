@@ -8,6 +8,8 @@ export const useSchoolTable = () => {
     const [dialogOpen, setDialogOpen] = useState(false);
     const [selectedId, setSelectedId] = useState(null);
     const [formOpen, setFormOpen] = useState(false);
+    const [sortField, setSortField] = useState('');
+    const [sortDirection, setSortDirection] = useState('asc');
 
     const [pagination, setPagination] = useState({
         page: 0,
@@ -21,14 +23,16 @@ export const useSchoolTable = () => {
             ...filters,
             page: pagination.page,
             size: pagination.size,
+            ...(sortField && { sort: `${sortField},${sortDirection}` }),
         });
+
         setSchools(data.content);
         setPagination((prev) => ({
             ...prev,
             totalPages: data.totalPages,
             totalElements: data.totalElements
         }));
-    }, [filters, pagination.page, pagination.size]);
+    }, [filters, pagination.page, pagination.size, sortField, sortDirection]);
 
     useEffect(() => {
         (async () => {
@@ -43,6 +47,14 @@ export const useSchoolTable = () => {
     const handleDeactivate = (id) => {
         setSelectedId(id);
         setDialogOpen(true);
+    };
+    const handleSort = (field) => {
+        if (sortField === field) {
+            setSortDirection(prev => (prev === 'asc' ? 'desc' : 'asc'));
+        } else {
+            setSortField(field);
+            setSortDirection('asc');
+        }
     };
 
     const confirmDeactivate = async () => {
@@ -65,6 +77,9 @@ export const useSchoolTable = () => {
         handleFilterChange,
         handleDeactivate,
         confirmDeactivate,
+        handleSort,
+        sortField,
+        sortDirection,
     };
 };
 
