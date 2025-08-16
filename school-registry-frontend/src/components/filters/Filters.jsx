@@ -10,13 +10,15 @@ import {schoolTypes} from '../../constants/schoolTypes.js';
 import {styles} from './styles.js';
 import ControlTextInput from "../../inputs/ControlTextInput/ControlTextInput.jsx";
 import ControlSelectInput from "../../inputs/ControlSelectInput/ControlSelectInput.jsx";
+import {useTranslation} from "react-i18next";
 
 const Filters = ({filters, onChange}) => {
+    const {t} = useTranslation();
 
     return (
         <Box sx={styles.container}>
             <ControlTextInput
-                label="Область"
+                label={t('filters.region')}
                 name="region"
                 value={filters.region}
                 onChange={onChange}
@@ -24,19 +26,18 @@ const Filters = ({filters, onChange}) => {
             />
 
             <FormControl sx={{...styles.select, ...styles.formControlWithClear}}>
-                <InputLabel sx={styles.label}>Тип</InputLabel>
+                <InputLabel sx={styles.label}>{t('filters.type')}</InputLabel>
                 <ControlSelectInput
-                    label="Тип"
                     name="type"
                     value={filters.type}
                     onChange={onChange}
                     variant="outlined"
                     size="small"
                 >
-                    <MenuItem value="">Усі</MenuItem>
+                    <MenuItem value="">{t('filters.allTypes')}</MenuItem>
                     {schoolTypes.map((type) => (
                         <MenuItem key={type.value} value={type.value}>
-                            {type.label}
+                            {t(type.labelKey)}
                         </MenuItem>
                     ))}
                 </ControlSelectInput>
@@ -44,18 +45,17 @@ const Filters = ({filters, onChange}) => {
 
             <FormControl sx={{...styles.select, ...styles.formControlWithClear}}>
 
-                <InputLabel sx={styles.label}>Активність</InputLabel>
+                <InputLabel sx={styles.label}>{t('filters.status')}</InputLabel>
                 <ControlSelectInput
-                    label="Активність"
                     name="active"
                     value={filters.active}
                     onChange={onChange}
                     variant="outlined"
                     size="small"
                 >
-                    <MenuItem value="">Усі</MenuItem>
-                    <MenuItem value="true">Активні</MenuItem>
-                    <MenuItem value="false">Неактивні</MenuItem>
+                    <MenuItem value="">{t('filters.allStatuses')}</MenuItem>
+                    <MenuItem value="true">{t('filters.activeOnly')}</MenuItem>
+                    <MenuItem value="false">{t('filters.inactiveOnly')}</MenuItem>
                 </ControlSelectInput>
             </FormControl>
         </Box>

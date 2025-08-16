@@ -2,8 +2,10 @@ import {validateSchoolForm} from '../../validators/schoolValidator';
 import {createSchool} from '../../api';
 import {useEffect, useState} from 'react';
 import {initialSchoolForm} from '../../constants/initialForm.js';
+import {useTranslation} from "react-i18next";
 
-export const useSchoolForm = (open, onSuccess, onClose) => {
+export const useSchoolCreateForm = (open, onSuccess, onClose) => {
+    const {t} = useTranslation();
 
     const [errors, setErrors] = useState({});
     const [form, setForm] = useState(initialSchoolForm);
@@ -28,7 +30,7 @@ export const useSchoolForm = (open, onSuccess, onClose) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const validationErrors = validateSchoolForm(form);
+        const validationErrors = validateSchoolForm(form, t);
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
             return;

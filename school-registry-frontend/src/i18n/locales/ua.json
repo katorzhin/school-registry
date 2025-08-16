@@ -1,0 +1,73 @@
+{
+  "title": "Реєстр шкіл",
+
+  "filters": {
+    "region": "Область",
+    "type": "Тип",
+    "allTypes": "Усі",
+    "status": "Статус",
+    "allStatuses": "Усі",
+    "activeOnly": "Активні",
+    "inactiveOnly": "Неактивні"
+  },
+  "schoolType": {
+    "gymnasium": "Гімназія",
+    "lyceum": "Ліцей",
+    "zzso": "ЗЗСО"
+  },
+
+  "buttons": {
+    "create": "Створити",
+    "deactivate": "Деактивувати",
+    "cancel": "Скасувати"
+  },
+
+  "schoolTable": {
+    "name": "Назва",
+    "edrpou": "ЄДРПОУ",
+    "region": "Область",
+    "type": "Тип",
+    "isActive": "Активна",
+    "action": "Дія"
+  },
+
+  "schoolCreateForm": {
+    "title": "Створення школи",
+    "name": "Назва",
+    "edrpou": "ЄДРПОУ",
+    "region": "Область",
+    "type": "Тип",
+    "isActive": "Активна"
+  },
+
+  "pagination": {
+    "records": "записів",
+    "of": "з"
+  },
+
+  "status": {
+    "active": "Так",
+    "inactive": "Ні"
+  },
+
+  "formValidation": {
+    "requiredName": "Назва обовʼязкова",
+    "minName": "Мінімум 7 символи",
+    "requiredEdrpou": "ЄДРПОУ обовʼязковий",
+    "invalidEdrpou": "Має бути 8 цифр",
+    "requiredRegion": "Область обовʼязкова",
+    "minRegion": "Мінімум 7 символів",
+    "requiredType": "Оберіть тип"
+  },
+
+  "dialog": {
+    "confirmation": "Підтвердження",
+    "confirmDeactivate": "Деактивувати цю школу?"
+  },
+
+  "notifications": {
+    "schoolCreated": "Школу успішно створено!",
+    "schoolDeactivated": "Школу деактивовано",
+    "deactivateFailed": "Не вдалося деактивувати школу"
+  }
+}

@@ -1,29 +1,30 @@
-import { z } from 'zod';
+import {z} from 'zod';
 
-export const schoolSchema = z.object({
-    name: z
-        .string()
-        .trim()
-        .min(1, 'Назва обовʼязкова')
-        .min(7, 'Мінімум 7 символи'),
+export const schoolSchema = (t) =>
+    z.object({
+        name: z
+            .string()
+            .trim()
+            .min(1, t('formValidation.requiredName'))
+            .min(7, t('formValidation.minName')),
 
-    edrpou: z
-        .string()
-        .min(1, 'ЄДРПОУ обовʼязковий')
-        .regex(/^\d{8}$/, 'Має бути 8 цифр'),
+        edrpou: z
+            .string()
+            .min(1, t('formValidation.requiredEdrpou'))
+            .regex(/^\d{8}$/, t('formValidation.invalidEdrpou')),
 
-    region: z
-        .string()
-        .min(1, 'Область обовʼязкова')
-        .min(7, 'Мінімум 7 символів'),
+        region: z
+            .string()
+            .min(1, t('formValidation.requiredRegion'))
+            .min(7, t('formValidation.minRegion')),
 
-    type: z
-        .string()
-        .min(1, 'Оберіть тип'),
-});
+        type: z
+            .string()
+            .min(1, t('formValidation.requiredType')),
+    });
 
-export const validateSchoolForm = (form) => {
-    const result = schoolSchema.safeParse(form);
+export const validateSchoolForm = (form, t) => {
+    const result = schoolSchema(t).safeParse(form);
 
     if (result.success) return {};
 

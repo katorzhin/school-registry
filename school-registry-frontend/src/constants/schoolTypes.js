@@ -1,5 +1,5 @@
 export const schoolTypes = [
-    { label: 'Гімназія', value: 'GYMNASIUM' },
-    { label: 'Ліцей', value: 'LYCEUM' },
-    { label: 'ЗЗСО', value: 'ZZSO' },
+    { labelKey: 'schoolType.gymnasium', value: 'GYMNASIUM' },
+    { labelKey: 'schoolType.lyceum', value: 'LYCEUM' },
+    { labelKey: 'schoolType.zzso', value: 'ZZSO' },
 ];

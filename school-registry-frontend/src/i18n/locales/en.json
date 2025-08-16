@@ -1,0 +1,76 @@
+{
+  "title": "School Registry",
+
+  "filters": {
+    "region": "Region",
+    "type": "Type",
+    "allTypes": "All",
+    "status": "Status",
+    "allStatuses": "All",
+    "activeOnly": "Active",
+    "inactiveOnly": "Inactive"
+  },
+
+  "schoolType": {
+    "gymnasium": "Gymnasium",
+    "lyceum": "Lyceum",
+    "zzso": "GSEI"
+  },
+
+  "buttons": {
+    "create": "Create",
+    "deactivate": "Deactivate",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  },
+
+  "schoolTable": {
+    "title": "Create School",
+    "name": "Name",
+    "edrpou": "EDRPOU",
+    "region": "Region",
+    "type": "Type",
+    "isActive": "Active",
+    "action": "Action"
+  },
+
+  "schoolCreateForm": {
+    "title": "Create School",
+    "name": "Name",
+    "edrpou": "EDRPOU",
+    "region": "Region",
+    "type": "Type",
+    "isActive": "Active"
+  },
+
+  "pagination": {
+    "records": "records",
+    "of": "of"
+  },
+
+  "status": {
+    "active": "Yes",
+    "inactive": "No"
+  },
+
+  "formValidation": {
+    "requiredName": "Name is required",
+    "minName": "Minimum 7 characters",
+    "requiredEdrpou": "EDRPOU is required",
+    "invalidEdrpou": "Must be exactly 8 digits",
+    "requiredRegion": "Region is required",
+    "minRegion": "Minimum 7 characters",
+    "requiredType": "Type is required"
+  },
+
+  "dialog": {
+    "confirmation": "Confirmation",
+    "confirmDeactivate": "Deactivate this school?"
+  },
+
+  "notifications": {
+    "schoolCreated": "School successfully created!",
+    "schoolDeactivated": "School has been deactivated",
+    "deactivateFailed": "Failed to deactivate school"
+  }
+}

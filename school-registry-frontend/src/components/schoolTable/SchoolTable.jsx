@@ -5,12 +5,13 @@ import {
 import Filters from "../filters/Filters.jsx";
 import ConfirmationDialog from "../confirmationDialog/ConfirmationDialog.jsx";
 import SchoolRow from "../schoolRow/SchoolRow.jsx";
-import SchoolForm from "../schoolForm/SchoolForm.jsx";
+import SchoolCreateForm from "../schoolCreateForm/SchoolCreateForm.jsx";
 import {useSchoolTable} from './useSchoolTable.js';
 import {styles} from './styles.js';
 import {useState} from "react";
 import {Pagination} from '@mui/material';
 import TableSortableCell from "../tableSorting/TableSortableCell.jsx";
+import {useTranslation} from "react-i18next";
 
 const SchoolTable = () => {
     const {
@@ -31,6 +32,7 @@ const SchoolTable = () => {
         handleSort,
     } = useSchoolTable();
 
+    const {t} = useTranslation();
     const [snackbar, setSnackbar] = useState({
         open: false,
         message: '',
@@ -56,15 +58,15 @@ const SchoolTable = () => {
                     filters={filters}
                     onChange={handleFilterChange}/>
                 <Button variant="contained" onClick={() => setFormOpen(true)}>
-                    Створити
+                    {t('buttons.create')}
                 </Button>
             </Box>
-            <SchoolForm
+            <SchoolCreateForm
                 open={formOpen}
                 onClose={() => setFormOpen(false)}
                 onSuccess={async () => {
                     await loadSchools();
-                    showSnackbar('Школу успішно створено!');
+                    showSnackbar(t('notifications.schoolCreated'));
                 }}
             />
 
@@ -73,23 +75,23 @@ const SchoolTable = () => {
                     <TableHead>
                         <TableRow sx={styles.tableHeadRow}>
                             <TableSortableCell field="name"
-                                               label="Назва"
+                                               label={t('schoolTable.name')}
                                                sortField={sortField}
                                                sortDirection={sortDirection}
                                                onSort={handleSort}/>
-                            <TableCell>ЄДРПОУ</TableCell>
+                            <TableCell>{t('schoolTable.edrpou')}</TableCell>
                             <TableSortableCell field="region"
-                                               label="Область"
+                                               label={t('schoolTable.region')}
                                                sortField={sortField}
                                                sortDirection={sortDirection}
                                                onSort={handleSort}/>
                             <TableSortableCell field="type"
-                                               label="Тип"
+                                               label={t('schoolTable.type')}
                                                sortField={sortField}
                                                sortDirection={sortDirection}
                                                onSort={handleSort}/>
-                            <TableCell>Активна</TableCell>
-                            <TableCell>Дія</TableCell>
+                            <TableCell>{t('schoolTable.isActive')}</TableCell>
+                            <TableCell>{t('schoolTable.action')}</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -112,11 +114,12 @@ const SchoolTable = () => {
             </Box>
 
             <Box textAlign="center" mb={2}>
-                {pagination.totalElements === 0 ? (
-                    '0 записів'
-                ) : (
-                    `${pagination.page * pagination.size + 1} – ${Math.min((pagination.page + 1) * pagination.size, pagination.totalElements)} з ${pagination.totalElements}`
-                )}
+                {pagination.totalElements === 0
+                    ? `0 ${t('pagination.records')}`
+                    : `${pagination.page * pagination.size + 1} – ${Math.min(
+                        (pagination.page + 1) * pagination.size,
+                        pagination.totalElements
+                    )} ${t('pagination.of')} ${pagination.totalElements}`}
             </Box>
 
             <ConfirmationDialog
@@ -125,9 +128,9 @@ const SchoolTable = () => {
                 onConfirm={async () => {
                     try {
                         await confirmDeactivate();
-                        showSnackbar('Школу деактивовано', 'info');
+                        showSnackbar(t('notifications.schoolDeactivated'), 'info');
                     } catch (error) {
-                        let message = 'Не вдалося деактивувати школу';
+                        let message = t('notifications.deactivateFailed');
 
                         const data = await error.response?.json?.().catch(() => null);
                         if (data?.detail) message = data.detail;

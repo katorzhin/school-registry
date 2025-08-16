@@ -12,28 +12,29 @@ import {
 import {styles} from './styles.js';
 import {schoolTypes} from '../../constants/schoolTypes';
 import {allowOnlyDigits} from "../../utils/allowOnlyDigits.js";
-import {useSchoolForm} from "./useSchoolForm.js";
+import {useSchoolCreateForm} from "./useSchoolCreateForm.js";
 import ControlTextInput from "../../inputs/ControlTextInput/ControlTextInput.jsx";
 import ControlSelectInput from "../../inputs/ControlSelectInput/ControlSelectInput.jsx";
+import {useTranslation} from "react-i18next";
 
-const SchoolForm = ({open, onClose, onSuccess}) => {
-
+const SchoolCreateForm = ({open, onClose, onSuccess}) => {
+    const { t } = useTranslation();
     const {form, setForm, errors, handleChange, handleSubmit}
-        = useSchoolForm(open, onSuccess, onClose);
+        = useSchoolCreateForm(open, onSuccess, onClose);
 
     return (
         <Dialog
             open={open}
             onClose={onClose}
             sx={styles.dialog}>
-            <DialogTitle>Створення школи</DialogTitle>
+            <DialogTitle>{t('schoolCreateForm.title')}</DialogTitle>
             <form onSubmit={handleSubmit}>
                 <DialogContent
                     sx={styles.content}>
                     <ControlTextInput
                         fullWidth
                         name="name"
-                        label="Назва"
+                        label={t('schoolCreateForm.name')}
                         value={form.name}
                         onChange={handleChange}
                         error={!!errors.name}
@@ -45,7 +46,7 @@ const SchoolForm = ({open, onClose, onSuccess}) => {
                     <ControlTextInput
                         fullWidth
                         name="edrpou"
-                        label="ЄДРПОУ"
+                        label={t('schoolCreateForm.edrpou')}
                         value={form.edrpou}
                         onChange={handleChange}
                         onBeforeInput={allowOnlyDigits}
@@ -57,7 +58,7 @@ const SchoolForm = ({open, onClose, onSuccess}) => {
                     <ControlTextInput
                         fullWidth
                         name="region"
-                        label="Область"
+                        label={t('schoolCreateForm.region')}
                         value={form.region}
                         onChange={handleChange}
                         error={!!errors.region}
@@ -72,17 +73,17 @@ const SchoolForm = ({open, onClose, onSuccess}) => {
                         error={!!errors.type}
                         sx={styles.formControlWithClear}
                     >
-                        <InputLabel>Тип</InputLabel>
+                        <InputLabel>{t('schoolCreateForm.type')}</InputLabel>
                         <ControlSelectInput
                             name="type"
-                            label="Тип"
+                            label={t('schoolCreateForm.type')}
                             value={form.type}
                             onChange={handleChange}
                             setForm={setForm}
                         >
                             {schoolTypes.map((type) => (
                                 <MenuItem key={type.value} value={type.value}>
-                                    {type.label}
+                                    {t(type.labelKey)}
                                 </MenuItem>
                             ))}
                         </ControlSelectInput>
@@ -92,15 +93,14 @@ const SchoolForm = ({open, onClose, onSuccess}) => {
                         )}
                     </FormControl>
 
-
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={onClose}>Скасувати</Button>
-                    <Button type="submit" variant="contained">Створити</Button>
+                    <Button onClick={onClose}>{t('buttons.cancel')}</Button>
+                    <Button type="submit" variant="contained">{t('buttons.create')}</Button>
                 </DialogActions>
             </form>
         </Dialog>
     );
 };
 
-export default SchoolForm;
+export default SchoolCreateForm;
