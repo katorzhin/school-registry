@@ -1,0 +1,7 @@
+export const ErrorCodes= {
+    INVALID_CREDENTIALS : 'E320',
+    USER_NOT_FOUND : 'E400',
+    USERNAME_TAKEN : 'E322',
+    USERNAME_ALREADY_EXISTS:'E301',
+
+};

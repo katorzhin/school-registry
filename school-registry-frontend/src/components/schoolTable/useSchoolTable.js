@@ -1,5 +1,5 @@
 import {useCallback, useEffect, useState} from 'react';
-import {fetchSchools, deactivateSchool} from '../../api';
+import {fetchSchools, deactivateSchool} from '@/api/schoolApi.js';
 
 export const useSchoolTable = () => {
 

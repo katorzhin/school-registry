@@ -1,7 +1,7 @@
-import {validateSchoolForm} from '../../validators/schoolValidator';
-import {createSchool} from '../../api';
+import {validateSchoolForm} from '@/validators/schoolValidator.js';
+import {createSchool} from '@/api/schoolApi.js';
 import {useEffect, useState} from 'react';
-import {initialSchoolForm} from '../../constants/initialForm.js';
+import {initialSchoolForm} from '@/constants/initialForm.js';
 import {useTranslation} from "react-i18next";
 
 export const useSchoolCreateForm = (open, onSuccess, onClose) => {

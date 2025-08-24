@@ -7,4 +7,5 @@
 
     <include file="changes/001-create-school-table.xml" relativeToChangelogFile="true"/>
     <include file="changes/002-seed-schools.xml" relativeToChangelogFile="true"/>
+    <include file="changes/003-create-users-table.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

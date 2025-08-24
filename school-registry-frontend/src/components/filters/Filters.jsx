@@ -6,7 +6,7 @@ import {
     MenuItem,
 } from '@mui/material';
 
-import {schoolTypes} from '../../constants/schoolTypes.js';
+import {schoolTypes} from '@/constants/schoolTypes.js';
 import {styles} from './styles.js';
 import ControlTextInput from "../../inputs/ControlTextInput/ControlTextInput.jsx";
 import ControlSelectInput from "../../inputs/ControlSelectInput/ControlSelectInput.jsx";

@@ -10,11 +10,11 @@ import {
 } from '@mui/material';
 
 import {styles} from './styles.js';
-import {schoolTypes} from '../../constants/schoolTypes';
-import {allowOnlyDigits} from "../../utils/allowOnlyDigits.js";
+import {schoolTypes} from '@/constants/schoolTypes.js';
+import {allowOnlyDigits} from "@/utils/allowOnlyDigits.js";
 import {useSchoolCreateForm} from "./useSchoolCreateForm.js";
-import ControlTextInput from "../../inputs/ControlTextInput/ControlTextInput.jsx";
-import ControlSelectInput from "../../inputs/ControlSelectInput/ControlSelectInput.jsx";
+import ControlTextInput from "@/inputs/ControlTextInput/ControlTextInput.jsx";
+import ControlSelectInput from "@/inputs/ControlSelectInput/ControlSelectInput.jsx";
 import {useTranslation} from "react-i18next";
 
 const SchoolCreateForm = ({open, onClose, onSuccess}) => {

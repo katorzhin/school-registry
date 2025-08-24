@@ -69,5 +69,34 @@
     "schoolCreated": "Школу успішно створено!",
     "schoolDeactivated": "Школу деактивовано",
     "deactivateFailed": "Не вдалося деактивувати школу"
+  },
+
+  "auth": {
+    "form": {
+      "title": "Вхід",
+      "username": "Ім'я користувача",
+      "password": "Пароль",
+      "email": "Електронна пошта",
+      "repeatPassword": "Повторіть пароль"
+    },
+    "dialog": {
+      "title": "Реєстрація"
+    },
+    "buttons": {
+      "login": "Увійти",
+      "register": "Зареєструватися",
+      "createAccount": "Створити акаунт",
+      "cancel": "Скасувати"
+    },
+    "error": {
+      "login": "Помилка входу",
+      "registration": "Помилка реєстрації",
+      "invalidEmail": "Некоректна електронна пошта",
+      "passwordsDoNotMatch": "Паролі не співпадають",
+      "usernameRequired": "Імʼя користувача обовʼязкове",
+      "passwordRequired": "Пароль обовʼязковий",
+      "badCredentials": "Невірні облікові дані",
+      "usernameAlreadyExists": "Ім'я користувача вже існує"
+    }
   }
 }

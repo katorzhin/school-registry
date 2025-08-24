@@ -5,7 +5,7 @@ import {
 import Filters from "../filters/Filters.jsx";
 import ConfirmationDialog from "../confirmationDialog/ConfirmationDialog.jsx";
 import SchoolRow from "../schoolRow/SchoolRow.jsx";
-import SchoolCreateForm from "../schoolCreateForm/SchoolCreateForm.jsx";
+import SchoolCreateForm from "../forms/schoolCreateForm/SchoolCreateForm.jsx";
 import {useSchoolTable} from './useSchoolTable.js';
 import {styles} from './styles.js';
 import {useState} from "react";

@@ -72,5 +72,34 @@
     "schoolCreated": "School successfully created!",
     "schoolDeactivated": "School has been deactivated",
     "deactivateFailed": "Failed to deactivate school"
+  },
+
+  "auth": {
+    "form": {
+      "title": "Login",
+      "username": "Username",
+      "password": "Password",
+      "email": "Email",
+      "repeatPassword": "Repeat password"
+    },
+    "dialog": {
+      "title": "Sign Up"
+    },
+    "buttons": {
+      "login": "Login",
+      "register": "Register",
+      "createAccount": "Create account",
+      "cancel": "Cancel"
+    },
+    "error": {
+      "login": "Login failed",
+      "registration": "Registration failed",
+      "invalidEmail": "Invalid email",
+      "passwordsDoNotMatch": "Passwords do not match",
+      "usernameRequired": "Username is required",
+      "passwordRequired": "Password is required",
+      "badCredentials": "Bad credentials",
+      "usernameAlreadyExists": "Username already exists"
+    }
   }
 }
